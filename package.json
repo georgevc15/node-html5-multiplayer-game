@@ -1,0 +1,33 @@
+{
+  "name": "node-html5-multiplayer-game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/georgevc15/node-html5-multiplayer-game.git"
+  },
+  "keywords": [
+    "node",
+    "game",
+    "html5",
+    "sockets",
+    "canvas"
+  ],
+  "author": "G.C.T",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/georgevc15/node-html5-multiplayer-game/issues"
+  },
+  "homepage": "https://github.com/georgevc15/node-html5-multiplayer-game#readme",
+  "dependencies": {
+    "express": "^4.15.0",
+    "socket.io": "^1.7.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}

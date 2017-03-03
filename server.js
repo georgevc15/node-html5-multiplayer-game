@@ -25,18 +25,34 @@ server.listen(5000, function() {
 });
 
 //add WebSocket handlers
+var players = {};
 io.on('connection', function(socket) {
+	socket.on('new player', function() {
+		players[socket.id] = {
+			x: 300,
+			y: 300
+		};
+		console.log('New Player!');
+	});
 
+	socket.on('movement', function(data) {
+		var player = players[socket.id] || {};
+		if(data.left) {
+			player.x -= 5;
+		}
+		if(data.up) {
+			player.y -= 5;
+		}
+		if(data.right) {
+			player.x += 20;
+		}
+		if(data.down) {
+			player.y += 5;
+		}
+	});
 });
 
-
-io.sockets.on('connection', function (socket) {
-
-  socket.emit('start', 'start da game@!'); //emits to socket
-  
-});
 
 setInterval(function() {
-	io.sockets.emit('message', 'hi from console!');
-}, 1000);
-
+  io.sockets.emit('state', players);
+}, 1000 / 60);

@@ -16,7 +16,6 @@ app.use('/static', express.static(__dirname + '/static'));
 //routing
 app.get('/', function(request, response) {
 	 response.sendFile(path.join(__dirname, '/static/index.html'));
-    //console.log('dir name este'+__dirname);
 });
 
 //start server
@@ -32,7 +31,7 @@ io.on('connection', function(socket) {
 			x: 300,
 			y: 300
 		};
-		console.log('New Player!');
+		console.log(players);
 	});
 
 	socket.on('movement', function(data) {
@@ -56,3 +55,5 @@ io.on('connection', function(socket) {
 setInterval(function() {
   io.sockets.emit('state', players);
 }, 1000 / 60);
+
+module.exports = server;

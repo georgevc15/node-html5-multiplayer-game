@@ -61,7 +61,6 @@ canvas.width = 800;
 canvas.height = 600;
 var context = canvas.getContext('2d');
 	socket.on('state', function(players) {
-		console.log("sunt in on state!");
 		context.clearRect(0, 0, 800, 600);
 		context.fillStyle = 'green';
 		for (var id in players) {

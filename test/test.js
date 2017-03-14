@@ -56,9 +56,6 @@ describe("new player", function () {
               client.emit("new player", "New player connected!");
           });
       });
-
-
-
 });
 
 

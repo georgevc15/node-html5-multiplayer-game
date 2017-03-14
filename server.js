@@ -11,7 +11,9 @@ var io = socketIO(server);
 var Game =  require('./lib/Game');
 
 
-app.set('port', 5000);
+var port = process.env.PORT || 5000;
+
+app.set('port', port);
 app.use('/public', express.static(__dirname + '/public'));
 
 //routing
@@ -20,8 +22,8 @@ app.get('/', function(request, response) {
 });
 
 //start server
-server.listen(5000, function() {
-	console.log('Starting server on port 5000');
+server.listen(port, function() {
+	console.log('Starting server on port '+port);
 });
 
 

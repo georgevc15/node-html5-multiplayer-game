@@ -8,7 +8,7 @@ var app = express();
 var server  = http.Server(app);
 var io = socketIO(server);
 
-var Game =  require('./lib/Game')
+var Game =  require('./lib/Game');
 
 
 app.set('port', 5000);
@@ -58,7 +58,7 @@ io.on('connection', function(socket) {
 			player.y -= 5;
 		}
 		if(data.right) {
-			player.x += 20;
+			player.x += 5;
 		}
 		if(data.down) {
 			player.y += 5;

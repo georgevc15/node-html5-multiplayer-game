@@ -19,15 +19,15 @@ var movement = {
 
 document.addEventListener('keydown', function(event) {
 	switch (event.keyCode) {
-		case 65: //A
+		case 37: //A
 			movement.left = true;
 			break;
-		case 87: //W
+		case 38: //W
 			movement.up = true;
 			break;
-		case 68: //D
+		case 39: //D
 			movement.right = true;
-		case 83: //
+		case 40: //
 			movement.down = true;
 			break;		
 	}
@@ -35,15 +35,15 @@ document.addEventListener('keydown', function(event) {
 
 document.addEventListener('keyup', function(event) {
 	switch (event.keyCode) {
-		case 65: //A
+		case 37: //left arrow
 			movement.left = false;
 			break;
-		case 87: //W
+		case 38: //up arrow
 			movement.up = false;
 			break;
-		case 68: //D
+		case 39: //right arrow
 			movement.right = false;
-		case 83: //
+		case 40: //down arrow
 			movement.down = false;
 			break;		
 	}
@@ -53,20 +53,38 @@ document.addEventListener('keyup', function(event) {
 socket.emit('new player');
 setInterval(function() {
 	socket.emit('movement', movement);
-}, 1000 / 60)
+}, 1000 / 60);
 
 
 var canvas = document.getElementById('canvas');
 canvas.width = 800;
 canvas.height = 600;
 var context = canvas.getContext('2d');
+	
 	socket.on('state', function(players) {
+		var image = document.createElement("img");
+		image.src = '../public/images/car.png';
 		context.clearRect(0, 0, 800, 600);
-		context.fillStyle = 'green';
+   			
 		for (var id in players) {
 			var player = players[id];
-			context.beginPath();
-			context.arc(player.x, player.y, 10, 0, 2 * Math.PI);
-			context.fill();
+			image.onload = function() {
+			context.drawImage(image,player.x, player.y);
+			context.drawImage(image,400, 400);
+			  }
+			}
+	});
+
+
+
+
+
+
+
+/*
+		function rotatePlayer(degrees) {
+			context.rotate(degrees*Math.PI/360);
+			context.drawImage(image,player.x, player.y);
+			//context.restore();
 		}
-	})
+*/
